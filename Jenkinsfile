@@ -30,7 +30,13 @@ pipeline {
     }
     stage('Remove Unused docker image') {
       steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
+        sh "docker rmi "+registry+":$BUILD_NUMBER"
+      }
+    }
+    stage('Pull & Run docker image   repository') {
+      steps{
+        sh "docker pull "+registry+":$BUILD_NUMBER"
+        sh "docker run -it -p 82:80 -d "+registry+":$BUILD_NUMBER"
       }
     }
   }
