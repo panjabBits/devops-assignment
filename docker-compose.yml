@@ -2,8 +2,10 @@ version: '3'
 services:
   web:
           build: .
+          image: panjab/php_apache
           ports:
                   - "82:80"
+          container_name: php_apache
   db:
           image: mysql
           ports:
